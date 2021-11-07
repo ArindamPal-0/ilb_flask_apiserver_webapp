@@ -1,5 +1,6 @@
 import requests
-from flask import Flask, Blueprint, jsonify, make_response, request
+from flask import Flask, Blueprint, jsonify
+from flask import render_template, make_response, request
 
 app = Flask(__name__)
 
@@ -64,7 +65,9 @@ app.register_blueprint(api)
 
 @app.route('/')
 def index():
-    return "<h1>Hello, World!</h1>"
+    response = make_response(render_template('index.html'), 200)
+    response.headers['content-type'] = 'text/html'
+    return response
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port=5000)
