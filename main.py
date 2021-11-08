@@ -1,7 +1,8 @@
 import requests
-from flask import Flask, Blueprint, jsonify
-from flask import render_template, make_response, request
+from flask import Flask, Blueprint, jsonify, send_from_directory
+from flask import render_template, make_response, request, url_for
 from flask_cors import cross_origin
+import os
 
 app = Flask(__name__)
 
@@ -77,6 +78,11 @@ def index():
     response = make_response(render_template('index.html'), 200)
     response.headers['content-type'] = 'text/html'
     return response
+
+@app.route('/favicon.ico')
+def favicon():
+    return send_from_directory(os.path.join(app.root_path, 'static'),
+                               'img/favicon.ico', mimetype='image/vnd.microsoft.icon')
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port=5000)

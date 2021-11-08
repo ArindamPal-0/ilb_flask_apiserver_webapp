@@ -1,0 +1,72 @@
+:root {
+    --white: #E7DFDD;
+    --violet: #4717F6;
+    --purple: #A239CA;
+    --purple-shadow: #a139ca88;
+    --black: #080000;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    background-color: var(--white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100vw;
+    height: 100vh;
+}
+
+.card {
+    background-color: var(--black);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 50%;
+    height: 50%;
+    border-radius: 5%;
+    box-shadow: 7px 7px 2px 2px var(--purple-shadow);
+}
+
+img, .buttons {
+    margin: 20px 0;
+}
+
+.buttons {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+button {
+    background-color: transparent;
+    width: 40%;
+    height: 50px;
+    margin: 0 5px;
+    box-shadow: 2px 2px 7px var(--purple),
+        -2px -2px 7px var(--purple), 
+        inset 2px 2px 7px var(--purple),
+        inset -2px -2px 7px var(--purple); 
+    border: 3px solid var(--purple);
+    border-radius: 25px;
+    color: var(--purple);
+    font-size: 15px;
+    font-weight: bold;
+    text-align: center;
+    text-shadow: 2px 2px 5px var(--purple),
+        -2px -2px 5px var(--purple);
+}
+
+button:hover {
+    background-color: var(--purple);
+    color: black;
+    text-shadow: none;
+    box-shadow: none;
+    font-size: 17px;
+    mix-blend-mode: screen;
+}

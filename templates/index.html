@@ -5,8 +5,25 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>IoT LED</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='styles.css')}}">
 </head>
 <body>
-    <h1>Hello, World!</h1>
+    <div class="container">
+        <div class="card">
+            <img id="bulbImg" 
+                src="{{url_for('static', filename='img/bulb_off.png')}}"
+                height="50%">
+            <div class="buttons">
+                <button id="ledOn">LED On/Off</button>
+                <button id="blinking">LED blinking</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        bulb_on_url = "{{url_for('static', filename='img/bulb_on.png')}}";
+        bulb_off_url = "{{url_for('static', filename='img/bulb_off.png')}}";
+    </script>
+    <script type="text/javascript" src="{{url_for('static', filename='index.js')}}"></script>
 </body>
 </html>
