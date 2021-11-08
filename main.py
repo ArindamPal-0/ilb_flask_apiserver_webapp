@@ -1,6 +1,7 @@
 import requests
 from flask import Flask, Blueprint, jsonify
 from flask import render_template, make_response, request
+from flask_cors import cross_origin
 
 app = Flask(__name__)
 
@@ -45,20 +46,28 @@ def toggleLEDBlinking() -> dict:
 api = Blueprint('api', __name__, url_prefix='/api')
 
 @api.route('/led')
+@cross_origin()
 def get_led_status():
     status = getStatus()
     response = make_response(jsonify(status), 200)
-    response.headers['content-type'] = 'application/json'
+    response.headers['Content-Type'] = 'application/json'
     return response
 
 @api.route('/led', methods=['POST'])
+@cross_origin()
 def set_led_status():
-    if 'ledOn' in request.json:
-        status = toggleLED()
-    if 'blinking' in request.json:
-        status = toggleLEDBlinking()
+    status = getStatus()
+    if request.json:
+        if 'ledOn' in request.json:
+            status = toggleLED()
+        if 'blinking' in request.json:
+            status = toggleLEDBlinking()
+    else:
+        status["failed"] = True
+
+    #print(status)
     response = make_response(jsonify(status), 200)
-    response.headers['content-type'] = 'application/json'
+    response.headers['Content-Type'] = 'application/json'
     return response
 
 app.register_blueprint(api)
